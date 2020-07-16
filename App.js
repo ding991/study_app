@@ -21,10 +21,11 @@ export default function App() {
             <NavigationContainer>
                 <Tab.Navigator
                     screenOptions={({route}) => ({
-                    tabBarIcon: ({focused, color, size}) => {
-                        const iconName = IconData[route.name];
-                        return <Ionicons name={iconName} size={size} color={color} />;
-                    },
+                        tabBarIcon: ({focused, color, size}) => {
+                            const iconName = IconData[route.name];
+                            return <Ionicons name={iconName} size={size} color={color} />
+                        },
+                        tabBarVisible: true,
                     })}
                     tabBarOptions={{
                         activeTintColor: 'tomato',
