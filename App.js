@@ -5,6 +5,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { HomeScreen, MineScreen, FirendScreen, VideoScreen } from './src/view/index'
+import { init } from 'rongcloud-react-native-imlib';
+import { connect, ErrorCode } from 'rongcloud-react-native-imlib';
+// import httpClient from './src/assets/httpClient'
 
 const Tab = createBottomTabNavigator();
 
@@ -16,6 +19,27 @@ const IconData = {
 };
 
 export default function App() {
+    function onSuccess(userId) {
+        console.log("连接成功：" + userId);
+    }
+    
+    function onError(errorCode) {
+        console.log("连接失败：" + errorCode);
+    }
+    
+    function onTokenIncorrect() {
+        console.log("Token 不正确或已过期");
+    }
+    
+    useEffect(() => {
+        init('kj7swf8oknzz2')
+        connect(
+            '9QR6Xi9ipmd3XlgbC8+qVeZ0DJISbmC0e5XN/JTprKI=@7hd1.cn.rongnav.com;7hd1.cn.rongcfg.com',
+            onSuccess,
+            onError,
+            onTokenIncorrect
+        );
+    }, [])
     return (
         <SafeAreaProvider>
             <NavigationContainer>

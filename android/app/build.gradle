@@ -198,6 +198,7 @@ dependencies {
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
     compile project(':react-native-vector-icons')
+    compile project(':rongcloud-react-native-imlib')
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
