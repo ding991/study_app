@@ -79,6 +79,8 @@ target 'study_app' do
 
 
 
+  pod 'RCTAliyunPush', :path => '../node_modules/react-native-aliyun-push'
+
   target 'study_appTests' do
     inherit! :complete
     # Pods for testing

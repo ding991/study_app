@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import "AliyunPushManager.h"
 
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
@@ -43,8 +44,31 @@ static void InitializeFlipper(UIApplication *application) {
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  [[AliyunPushManager sharedInstance] setParams:@"30806801"
+                                      appSecret:@"eb76965b742b3dcb9577522e75c1e2ff"
+                                    lauchOptions:launchOptions
+              createNotificationCategoryHandler:^{
+    //create customize notification category here 
+  }];
   return YES;
 }
+
+// APNs注册成功回调，将返回的deviceToken上传到CloudPush服务器
+- (void) application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+  [[AliyunPushManager sharedInstance] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+}
+// APNs注册失败回调
+- (void) application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+  [[AliyunPushManager sharedInstance] application:application didFailToRegisterForRemoteNotificationsWithError:error];
+}
+// 打开／删除通知回调
+- (void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
+  [[AliyunPushManager sharedInstance] application:application didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
+}
+// 请求注册设定后，回调
+- (void) application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+  [[AliyunPushManager sharedInstance] application:application didRegisterUserNotificationSettings:notificationSettings];
+} 
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {
