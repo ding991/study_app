@@ -1,5 +1,6 @@
 package com.study_app;
 
+// import com.reactlibrary.RNAliOnepassPackage;
 import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
@@ -46,6 +47,7 @@ public class MainApplication extends Application implements ReactApplication {
           // packages.add(new RCIMLibPackage());
           // packages.add(new AliyunPushPackage());
           // packages.add(new RNNotificationsPackage(MainApplication.this));
+          // packages.add(new RNAliOnepassPackage());
           return packages;
         }
 
